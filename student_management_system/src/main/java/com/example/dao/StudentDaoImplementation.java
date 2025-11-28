@@ -1,7 +1,6 @@
 package com.example.dao;
 
 import java.sql.*;
-
 import com.example.model.Student;
 import com.example.util.DBConnection;
 import java.util.*;
@@ -55,5 +54,36 @@ public class StudentDaoImplementation implements StudentDao {
             e.printStackTrace();
         }
         return students;
+    }
+    @Override
+    public boolean UpdateStudent(int id,Student student){
+        String query = "update student set name= ?,age= ?,email= ? where id =?";
+        try(Connection connection = DBConnection.getConnection()){
+            PreparedStatement statement  = connection.prepareStatement(query);
+            statement.setString(1,student.getName());
+            statement.setInt(2,student.getAge());
+            statement.setString(3,student.getEmail());
+            statement.setInt(4,id);
+            int rows = statement.executeUpdate();
+            return rows>0;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    @Override
+    public boolean DeleteStudent(int id){
+        String query = "delete from student where id=?";
+        try(Connection connection = DBConnection.getConnection()){
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1,id);
+            int rows = statement.executeUpdate();
+            return rows>0;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

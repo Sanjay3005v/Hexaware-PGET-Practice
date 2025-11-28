@@ -11,11 +11,11 @@ import com.example.service.StudentServiceImplementation;
  */
 public class App 
 {
-    
+    private static StudentService service = new StudentServiceImplementation();
+    private static Scanner scan = new Scanner(System.in);
     public static void main( String[] args )
     {
-        StudentService service = new StudentServiceImplementation();
-        Scanner scan = new Scanner(System.in);
+        
         while(true){
         System.out.println("1. Add Student");
         System.out.println("2. Find Student");
@@ -26,6 +26,7 @@ public class App
         System.out.print("Enter the option: ");
         
         int option = scan.nextInt();
+
         switch (option) {
             case 1:
                 System.out.print("Enter the id   : ");
@@ -49,11 +50,29 @@ public class App
                 List<Student> students = service.getAllStudents();
                 System.out.println(!students.isEmpty()? students:"No records found");
                 break;
+            case 4:
+                System.out.print("Enter the id: ");
+                id = scan.nextInt();
+                System.out.print("Enter the name : ");
+                name = scan.next();
+                System.out.print("Enter the age  : ");
+                age = scan.nextInt();
+                System.out.print("Enter the email: ");
+                email = scan.next();
+                student = new Student(id, name, age, email);
+                System.out.println( service.updateStudent(id,student)? "Student data updated" : "Student not found");
+                break;
+            case 5:
+                System.out.print("Enter the id   :");
+                id = scan.nextInt();
+                System.out.println(service.deleteStudent(id)? "Student data deleted" : "Student not found");
+                break;
             case 6:
                 System.exit(0);
             default:
                 break;
         }
+        
     }
     }
 }

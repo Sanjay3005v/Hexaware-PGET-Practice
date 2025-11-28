@@ -22,4 +22,14 @@ public class StudentServiceImplementation implements StudentService{
     public List<Student> getAllStudents(){
         return dao.FindAllStudents();
     }
+
+    @Override
+    public boolean updateStudent(int id,Student student){
+        return dao.UpdateStudent(id,student);
+    }
+
+    @Override
+    public boolean deleteStudent(int id){
+        return dao.DeleteStudent(id);
+    }
 }

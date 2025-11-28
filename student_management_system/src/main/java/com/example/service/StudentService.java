@@ -6,4 +6,6 @@ public interface StudentService {
     boolean addStudent(Student student);
     Student getStudent(int id);
     List<Student> getAllStudents();
+    boolean updateStudent(int id,Student student);
+    boolean deleteStudent(int id);
 }
