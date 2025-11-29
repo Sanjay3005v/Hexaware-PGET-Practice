@@ -25,8 +25,8 @@ public class StudentServiceImplementation implements StudentService{
     }
 
     @Override
-    public boolean updateStudent(){
-        return dao.UpdateStudent();
+    public boolean updateStudent(Student student){
+        return dao.UpdateStudent(student);
     }
 
     @Override

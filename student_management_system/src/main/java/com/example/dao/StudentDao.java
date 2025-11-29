@@ -9,6 +9,6 @@ public interface StudentDao {
     public boolean saveStudent(Student student);
     public Student FindStudent(int id);
     public List<Student> FindAllStudents();
-    public boolean UpdateStudent();
+    public boolean UpdateStudent(Student student);
     public boolean DeleteStudent(int id);
 }

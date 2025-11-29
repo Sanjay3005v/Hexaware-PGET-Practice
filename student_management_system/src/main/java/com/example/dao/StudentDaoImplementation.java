@@ -5,8 +5,6 @@ import java.sql.*;
 import com.example.exception.StudentNotFound;
 import com.example.model.Student;
 import com.example.util.DBConnection;
-import com.example.util.InputUtil;
-
 import java.util.*;
 
 public class StudentDaoImplementation implements StudentDao {
@@ -19,7 +17,7 @@ public class StudentDaoImplementation implements StudentDao {
             statement.setInt(3, student.getAge());
             statement.setString(4,student.getEmail());
             statement.execute();
-            return true;
+            return true;    
         }
         catch(Exception e){
             e.printStackTrace();
@@ -66,28 +64,21 @@ public class StudentDaoImplementation implements StudentDao {
         return students;
     }
     @Override
-    public boolean UpdateStudent(){
-        int id = InputUtil.getInt("Enter the id   : ");
-        Student student=FindStudent(id);
-        if(student!=null){
-            String NewName = InputUtil.getString("Enter the name : ");
-            int NewAge = InputUtil.getInt("Enter the age  : ");
-            String NewEmail = InputUtil.getString("Enter the email: ");
-            String query = "update student set name= ?,age= ?,email= ? where id =?";
-            try(Connection connection = DBConnection.getConnection()){
-                PreparedStatement statement  = connection.prepareStatement(query);
-                statement.setString(1,NewName);
-                statement.setInt(2,NewAge);
-                statement.setString(3,NewEmail);
-                statement.setInt(4,id);
-                statement.executeUpdate();
-                return true;
+    public boolean UpdateStudent(Student student){
+        String query = "update student set name= ?,age= ?,email= ? where id =?";
+        try(Connection connection = DBConnection.getConnection()){
+            PreparedStatement statement  = connection.prepareStatement(query);
+            statement.setString(1,student.getName());
+            statement.setInt(2,student.getAge());
+            statement.setString(3,student.getEmail());
+            statement.setInt(4,student.getId());
+            statement.executeUpdate();
+            return true;
             }
             catch(Exception e){
                 e.printStackTrace();
             }
-        }
-        return false;
+            return false;
     }
     @Override
     public boolean DeleteStudent(int id){

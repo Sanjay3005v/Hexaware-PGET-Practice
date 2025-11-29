@@ -48,12 +48,26 @@ public class App
 
                 case 3:
                     List<Student> students = service.getAllStudents();
-                    System.out.println(!students.isEmpty()? students:"No records found");
+                    if(!students.isEmpty()){
+                        for(Student stud :students){
+                            System.out.println(stud);
+                        }
+                    }
+                    else{
+                        System.out.println("No records found");
+                    }
                     break;
 
                 case 4:
-                    if(service.updateStudent()){
-                        System.out.println("Student data updated");
+                    id = InputUtil.getInt("Enter the id   : ");
+                    student = service.getStudent(id);
+                    if(student!=null){
+                        student.setName(InputUtil.getString("Enter the name : "));
+                        student.setAge(InputUtil.getInt("Enter the age  : "));
+                        student.setEmail(InputUtil.getString("Enter the email: "));;
+                        if(service.updateStudent(student)){
+                            System.out.println("Student data updated");
+                        }
                     }
                     break;
 
