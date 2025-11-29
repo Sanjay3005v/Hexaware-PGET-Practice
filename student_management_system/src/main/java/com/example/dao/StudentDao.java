@@ -7,8 +7,8 @@ import com.example.model.Student;
 
 public interface StudentDao {
     public boolean saveStudent(Student student);
-    public Student FindStudent(int id);
-    public List<Student> FindAllStudents();
-    public boolean UpdateStudent(Student student);
-    public boolean DeleteStudent(int id);
+    public Student findStudent(int id);
+    public List<Student> findAllStudents();
+    public boolean updateStudent(Student student);
+    public boolean deleteStudent(int id);
 }

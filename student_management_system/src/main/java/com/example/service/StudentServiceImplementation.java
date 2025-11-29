@@ -16,21 +16,21 @@ public class StudentServiceImplementation implements StudentService{
 
     @Override
     public Student getStudent(int id){
-        return dao.FindStudent(id);
+        return dao.findStudent(id);
     }
 
     @Override
     public List<Student> getAllStudents(){
-        return dao.FindAllStudents();
+        return dao.findAllStudents();
     }
 
     @Override
     public boolean updateStudent(Student student){
-        return dao.UpdateStudent(student);
+        return dao.updateStudent(student);
     }
 
     @Override
     public boolean deleteStudent(int id){
-        return dao.DeleteStudent(id);
+        return dao.deleteStudent(id);
     }
 }

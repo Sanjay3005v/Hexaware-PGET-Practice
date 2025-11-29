@@ -25,7 +25,7 @@ public class StudentDaoImplementation implements StudentDao {
         return false;
     }
     @Override
-    public Student FindStudent(int id){
+    public Student findStudent(int id){
         String query = "select * from student where id = ?";
         Student student = null;
         try(Connection connection = DBConnection.getConnection()){
@@ -45,7 +45,7 @@ public class StudentDaoImplementation implements StudentDao {
         return student;
     }
     @Override
-    public List<Student> FindAllStudents(){
+    public List<Student> findAllStudents(){
         String query= "select * from student";
         List<Student> students = new ArrayList<>();
         try(Connection connection = DBConnection.getConnection()){
@@ -64,7 +64,7 @@ public class StudentDaoImplementation implements StudentDao {
         return students;
     }
     @Override
-    public boolean UpdateStudent(Student student){
+    public boolean updateStudent(Student student){
         String query = "update student set name= ?,age= ?,email= ? where id =?";
         try(Connection connection = DBConnection.getConnection()){
             PreparedStatement statement  = connection.prepareStatement(query);
@@ -81,7 +81,7 @@ public class StudentDaoImplementation implements StudentDao {
             return false;
     }
     @Override
-    public boolean DeleteStudent(int id){
+    public boolean deleteStudent(int id){
         String query = "delete from student where id=?";
         try(Connection connection = DBConnection.getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
