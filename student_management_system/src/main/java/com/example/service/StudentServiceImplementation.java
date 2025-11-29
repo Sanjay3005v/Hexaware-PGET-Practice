@@ -1,6 +1,6 @@
 package com.example.service;
 
-import java.util.*;
+import java.util.List;
 import com.example.dao.StudentDao;
 import com.example.model.Student;
 import com.example.dao.StudentDaoImplementation;
@@ -9,6 +9,7 @@ public class StudentServiceImplementation implements StudentService{
 
     private StudentDao dao = new StudentDaoImplementation();
     
+    @Override
     public boolean addStudent(Student student){
         return dao.saveStudent(student);
     }
@@ -24,8 +25,8 @@ public class StudentServiceImplementation implements StudentService{
     }
 
     @Override
-    public boolean updateStudent(int id,Student student){
-        return dao.UpdateStudent(id,student);
+    public boolean updateStudent(){
+        return dao.UpdateStudent();
     }
 
     @Override
